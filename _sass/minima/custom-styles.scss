@@ -1,28 +1,40 @@
-// Placeholder to allow defining custom styles that override everything else.
-// (Use `_sass/minima/custom-variables.scss` to override variable defaults)
-
-.page-content {
-  padding-top: $nav-bar-height;
-  background-image: linear-gradient(to bottom, $lm-brand-color $nav-bar-height, $background-color 15%);
-  @media (prefers-color-scheme: dark) {
-    background-image: linear-gradient(to bottom, $dm-brand-color $nav-bar-height, $background-color 15%);
-  }
+.app .buttons img {
+  margin-right: 10px;
 }
 
-.gradient-background {
-  background-image: linear-gradient(to bottom, $lm-brand-color $nav-bar-height, $background-color 100%);
-  @media (prefers-color-scheme: dark) {
-    background-image: linear-gradient(to bottom, $dm-brand-color $nav-bar-height, $background-color 100%);
-  }
+.app .name h3 {
+  font-size: 1.5em;
+  line-height: 50px;
 }
 
-.title-text {
-  overflow: hidden;
-  white-space: nowrap;
-  font-size: 1.625rem;
-  @include media-query($on-palm) {
-    font-size: 5vw;
-  }
+.app .name img.icon {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  height: 50px;
+  width: 50px;
+}
+
+.app .name {
+  display: grid;
+  grid-column-gap: 10px;
+  grid-template-columns: 60px 1fr;
+}
+
+.app .note {
+  margin-top: 10px;
+  opacity: 0.7;
+}
+
+.app img.screenshot {
+  margin-bottom: 30px;
+}
+
+.app-grid {
+  display: grid;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  grid-template-columns: repeat(1, 1fr);
+  margin-top: 40px;
 }
 
 .feature-content {
@@ -40,23 +52,35 @@
   }
 }
 
-.vertical-padding {
-  padding-top: 5em;
+.gradient-background {
+  background-image: linear-gradient(
+                  to bottom,
+                  $lm-brand-color $nav-bar-height,
+                  $background-color 100%
+  );
+  @media (prefers-color-scheme: dark) {
+    background-image: linear-gradient(
+                    to bottom,
+                    $dm-brand-color $nav-bar-height,
+                    $background-color 100%
+    );
+  }
 }
 
-.people-list {
-  width: 100%;
-  display: inline-block;
-}
-
-.people {
-  width: 90%;
-  list-style: none;
-  padding: 1em;
-  margin: 30px 0 0 0;
-  display: inline-grid;
-  grid-row-gap: 0.5rem;
-  grid-column-gap: 0.5rem;
+.page-content {
+  background-image: linear-gradient(
+                  to bottom,
+                  $lm-brand-color $nav-bar-height,
+                  $background-color 15%
+  );
+  padding-top: $nav-bar-height;
+  @media (prefers-color-scheme: dark) {
+    background-image: linear-gradient(
+                    to bottom,
+                    $dm-brand-color $nav-bar-height,
+                    $background-color 15%
+    );
+  }
 }
 
 .people li {
@@ -67,63 +91,36 @@
   margin-bottom: 30px;
 }
 
-.app-grid {
-  margin-top: 40px;
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  grid-row-gap: 20px;
-  grid-column-gap: 20px;
+.people {
+  display: inline-grid;
+  grid-column-gap: 0.5rem;
+  grid-row-gap: 0.5rem;
+  list-style: none;
+  margin: 30px 0 0 0;
+  padding: 1em;
+  width: 90%;
 }
 
-.app img.screenshot {
-  margin-bottom: 30px;
-}
-
-.app .name {
-  display: grid;
-  grid-template-columns: 60px 1fr;
-  grid-column-gap: 10px;
-}
-
-.app .name img.icon {
-  border-radius: 10px;
-  width: 50px;
-  height: 50px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.app .name h3 {
-  line-height: 50px;
-  font-size: 1.5em;
-}
-
-.app .buttons img {
-  margin-right: 10px;
-}
-
-.app .note {
-  margin-top: 10px;
-  opacity: 0.7;
-}
-
-@media only screen and (min-width: 600px) {
-  .people {
-    grid-template-columns: repeat(5, 1fr);
-  }
-  .app-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.people-list {
+  display: inline-block;
+  width: 100%;
 }
 
 .site-header {
-  border-top: 0px;
-  border-bottom: 0px;
   background-color: $lm-brand-color;
+
+  border-bottom: 0px;
+
+  // Positioning context for the mobile navigation icon
+  border-top: 0px;
+  max-height: $nav-bar-height;
+  min-height: $nav-bar-height;
+  position: fixed;
+  top: 0;
+  width: 100%;
   @media (prefers-color-scheme: dark) {
     background-color: $dm-brand-color !important;
   }
-  max-height: $nav-bar-height;
-  min-height: $nav-bar-height;
 
   .site-title,
   .page-link,
@@ -138,9 +135,26 @@
       color: white;
     }
   }
+}
 
-  // Positioning context for the mobile navigation icon
-  position: fixed;
-  top: 0;
-  width: 100%;
+.title-text {
+  font-size: 1.625rem;
+  overflow: hidden;
+  white-space: nowrap;
+  @include media-query($on-palm) {
+    font-size: 5vw;
+  }
+}
+
+.vertical-padding {
+  padding-top: 5em;
+}
+
+@media only screen and (min-width: 600px) {
+  .people {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .app-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
