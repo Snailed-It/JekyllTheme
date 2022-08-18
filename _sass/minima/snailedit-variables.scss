@@ -1,10 +1,10 @@
 // Placeholder to allow overriding predefined variables smoothly.
 
+$snail-brand-color: rgb(76, 34, 137);
 $content-width: 1000px;
 $dm-brand-color: $snail-brand-color;
 $lm-brand-color: lighten($snail-brand-color, 40%);
 $nav-bar-height: $spacing-unit * 1.865;
-$snail-brand-color: rgb(76, 34, 137);
 :root {
 	--secondary-text-color: #{lighten($lm-text-color, 50%)};
 }
