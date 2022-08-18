@@ -6,7 +6,6 @@ To experiment with this code, add some sample content and run `bundle exec jekyl
 
 TODO: Delete this and the text above, and describe your gem
 
-
 ## Installation
 
 Add this line to your Jekyll site's `Gemfile`:
