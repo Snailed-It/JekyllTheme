@@ -3,7 +3,7 @@
 	<meta content='IE=edge' http-equiv='X-UA-Compatible' />
 	<meta content='width=device-width, initial-scale=1' name='viewport' />
 	{%- seo -%}
-	<link href='{{ site.favicon }}' rel='shortcut icon' />
+	<link href="{{ site.favicon | default: '/assets/snail.svg' }}" rel='shortcut icon' />
 	<link href="{{ '/assets/css/style.css' | relative_url }}" rel='stylesheet'>
 	<title>{{ page.title }} | {{ site.title }}</title>
 	{%- feed_meta -%}
