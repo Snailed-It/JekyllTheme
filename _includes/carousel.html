@@ -1,26 +1,9 @@
-{% assign letterstring = "a,b,c,d,e,f,g,h,i,j,k,l,m,n" %}
-{% assign letters = letterstring | split: ',' %}
-{% assign number = include.number | minus: 1 %}
-<div id="carousel" class="carousel">
-	{% for item in carousel %}
-		<input class="carousel_activator" type="radio" name="carousel"
-			   id="{{ letters[forloop.index0] }}" {% if forloop.first %}checked="checked" {% endif %}/>
-	{% endfor %} sv
-	{% assign prevletter = letters[previndex] %}
-	<div class="carousel_controls">
-		<label class="carousel_control carousel_control-backward" for="{{ prevletter }}"></label>
-		<label class="carousel_control carousel_control-forward" for="{{ nextletter }}"></label>
-	</div>
-	<div class="carousel_track">
-		<ul>
-			{% for item in carousel.images %}
-				<li class="carousel_slide" style="background-image: url('{{ item.image }}');"></li>
-			{% endfor %}
-		</ul>
-	</div>
-	<div class="carousel_indicators">
-		{% for item in carousel.images %}
-			<label class="carousel_indicator" for="{{ letters[forloop.index0] }}"></label>
+<div class="carousel slide" data-bs-ride="carousel">
+	<div class="carousel-inner">
+		{% for item in section.carousel %}
+			<div class="carousel-item active">
+				<img src="{{ item.image }}" class="d-block w-100" alt="{{ item.alt }}">
+			</div>
 		{% endfor %}
 	</div>
 </div>
