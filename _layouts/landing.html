@@ -11,14 +11,18 @@ layout: default
 
 	{% assign page_content = site.landing | where: "published", true | sort: "order" %}
 	{% for section in page_content %}
-		{% capture align_class %}
-			{% cycle 'section-right', 'section-left' %}
-		{% endcapture %}
 		{% assign section_image = false %}
 		{% if section.image or section.carousel %}
 			{% assign section_image = true %}
 		{% endif %}
-		<div class="section {% if section_image == true %} {{ align_class }}{%- endif -%}">
+		{% capture align_class %}
+			{% if section_image == true %}
+				{% cycle 'section-right', 'section-left' %}
+			{% else %}
+				section-center
+			{% endif %}
+		{% endcapture %}
+		<div class="section {{ align_class }}">
 			{% if section_image == true %}
 				<div class="section-image">
 					{% if section.image %}

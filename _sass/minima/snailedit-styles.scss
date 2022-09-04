@@ -222,27 +222,59 @@
 }
 
 .section {
-	display: grid;
-	gap: 1em;
-	grid-auto-flow: column;
+	@media (min-width: $on-palm) {
+		display: grid;
+		gap: 1em;
+		grid-auto-flow: column;
+	}
+	@media (max-width: $on-palm) {
+		display: block;
+	}
 	padding-bottom: 1em;
 
 	.section-image {
 		display: flex;
 		align-items: center;
-		width: 300px;
+
+		@media (min-width: $on-palm) {
+			width: 300px;
+		}
+		@media (max-width: $on-palm) {
+			max-width: 100%;
+			width: 100%;
+		}
+
 		img,
 		object {
-			max-width: 300px;
+			@media (min-width: $on-palm) {
+				max-width: 300px;
+			}
+			@media (max-width: $on-palm) {
+				max-width: 80%;
+				margin: auto;
+				padding-bottom: 1em;
+				padding-top: 1em;
+			}
 		}
 	}
+
 	.section-text {
+		@media (max-width: $on-palm) {
+			width: 100%;
+		}
+
 		blockquote:not(:last-of-type) {
 			margin-bottom: 2em;
 		}
 
-		p:first-of-type {
-			margin-top: 2em;
+		p {
+			&:first-of-type {
+				margin-top: 2em;
+			}
+
+			&:empty {
+				display: none;
+			}
 		}
 	}
 
@@ -263,6 +295,13 @@
 
 		.section-image {
 			grid-column: 2;
+		}
+	}
+	&-center {
+		.section-text {
+			grid-column-start: 1;
+			grid-column-end: 2;
+			text-align: center;
 		}
 	}
 }
