@@ -1,2 +1,4 @@
+{% if section.title %}
 <h2>{{ section.title }}</h2>
+{% endif %}
 <p>{{ section.content | markdownify }}</p>
