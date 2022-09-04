@@ -228,10 +228,19 @@
 	padding-bottom: 1em;
 
 	.section-image {
+		width: 300px;
 		img,
 		object {
-			max-height: 350px;
 			max-width: 300px;
+		}
+	}
+	.section-text {
+		blockquote:not(:last-of-type) {
+			margin-bottom: 2em;
+		}
+
+		p:first-of-type {
+			margin-top: 2em;
 		}
 	}
 
