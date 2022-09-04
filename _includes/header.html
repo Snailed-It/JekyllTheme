@@ -3,7 +3,7 @@
 		{%- assign site_pages = site.pages | where: "menu", true | sort: "menu_order" -%} {%- assign titles_size =
 		site_pages | map: 'title' | join: '' | size -%}
 		<a class='site-title' href="{{ '/' | relative_url }}" rel='author'>
-			<object class='menubar-icon' data='/assets/icons/focuscuts-bw.svg' type='image/svg+xml'></object>
+			<object class='menubar-icon' data='{{ site.icon |  default('/assets/snail.svg') }}' type='image/svg+xml'></object>
 			&nbsp{{ site.title | escape }}
 		</a>
 

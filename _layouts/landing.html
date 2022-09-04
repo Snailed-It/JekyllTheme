@@ -9,31 +9,45 @@ layout: default
 
 	<div class="post-content">{{ content }}</div>
 
-	{%- assign page_content = site.landing | where: "published", true | sort: "order" -%} {%- for section in
-	page_content -%} {%- capture align-class -%}{%- cycle 'right', 'left' -%}{%- endcapture -%}
-	<div class="section{% if section.image %} section-{{ align-class }}{% endif -%}">
-		{%- if section.image -%}
-		<div class="section-image">
-			{%- if section.image.asset contains ".svg" -%}
-			<object type="image/svg+xml" data="/assets/{{ section.image.asset }}"></object>
-			{%- else -%}
-			<img src="/assets/{{ section.image.asset }}" alt="{{ section.image.alt }}" />
-			{%- endif -%}
+	{% assign page_content = site.landing | where: "published", true | sort: "order" %}
+	{% for section in page_content %}
+		{% capture align-class %}
+			{% cycle 'right', 'left' %}
+		{% endcapture %}
+		{% assign section_image = false %}
+		{% if section.image or section.carousel %}
+			{% assign section_image = true %}
+		{% endif %}
+		<div class="section{% if section_image %} section-{{ align-class }}{% endif %}">
+			{% if section_image %}
+				<div class="section-image">
+					{% if section.image %}
+						{% if section.image.asset contains ".svg" %}
+							<object type="image/svg+xml" data="/assets/{{ section.image.asset }}"></object>
+						{% else %}
+							<img src="/assets/{{ section.image.asset }}" alt="{{ section.image.alt }}"/>
+						{% endif %}
+					{% elsif section.carousel %}
+						{% include carousel.html carousel=section.carousel %}
+					{% endif %}
+				</div>
+			{% endif %}
+			<div class="section-text">{% include landing_section.html %}</div>
 		</div>
-		{%- endif -%}
-		<div class="section-text">{%- include landing_section.html -%}</div>
-	</div>
-	{%- endfor -%} {%- assign posts = site.posts -%} {%- if posts.size > 0 -%}
-	<h2 class="post-list-heading">Recent Updates</h2>
-	<ul class="post-list">
-		{%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%} {%- for post in posts -%}
-		<li>
-			<dt>
-				<a class="post-link" href="{{ post.url | relative_url }}"> {{ post.title | escape }} </a>
-			</dt>
-			<dd class="post-meta">{{ post.date | date: date_format }}</dd>
-		</li>
-		{%- endfor -%}
-	</ul>
-	{%- endif -%}
+	{% endfor %}
+	{% assign posts = site.posts %}
+	{% if posts.size > 0 %}
+		<h2 class="post-list-heading">Recent Updates</h2>
+		<ul class="post-list">
+			{% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
+			{% for post in posts %}
+				<li>
+					<dt>
+						<a class="post-link" href="{{ post.url | relative_url }}"> {{ post.title | escape }} </a>
+					</dt>
+					<dd class="post-meta">{{ post.date | date: date_format }}</dd>
+				</li>
+			{% endfor %}
+		</ul>
+	{% endif %}
 </article>

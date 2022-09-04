@@ -1,5 +1,2 @@
 <h2>{{ section.title }}</h2>
 <p>{{ section.content | markdownify }}</p>
-{% if section.carousels %}
-	{{ include carousel.html height="{{ section.carousel_height | default('100') }}" unit="{{ section.carousel_unit | default('%') }}" duration="{{ section.carousel_duration | default('7') }}" }}
-{% endif %}
