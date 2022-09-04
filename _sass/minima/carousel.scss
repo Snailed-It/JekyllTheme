@@ -293,3 +293,11 @@ $enable-reduced-motion: true !default;
 		}
 	}
 }
+
+@mixin clearfix() {
+	&::after {
+		display: block;
+		clear: both;
+		content: "";
+	}
+}
