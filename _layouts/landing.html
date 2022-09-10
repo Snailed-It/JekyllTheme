@@ -25,7 +25,16 @@ layout: default
 						{%- if section.image.asset contains ".svg" -%}
 							<object type="image/svg+xml" data="/assets/{{ section.image.asset }}"></object>
 						{%- else -%}
-							<img src="/assets/{{ section.image.asset }}" alt="{{ section.image.alt }}"/>
+							<picture>
+								<source
+									media="(prefers-color-scheme: dark)"
+									srcset="/assets/dark/{{ section.image.asset }}"
+								/>
+							   <img
+									alt="{{ section.image.alt }}"
+									src="/assets/{{ section.image.asset }}"
+								/>
+							</picture>
 						{%- endif -%}
 					{%- elsif section.carousel -%}
 						{%- include carousel.html carousel=section.carousel -%}
