@@ -222,15 +222,15 @@
 }
 
 .section {
+	padding-bottom: 2em;
+	@media (max-width: $on-palm) {
+		display: block;
+	}
 	@media (min-width: $on-palm) {
 		display: grid;
 		gap: 1em;
 		grid-auto-flow: column;
 	}
-	@media (max-width: $on-palm) {
-		display: block;
-	}
-	padding-bottom: 1em;
 
 	.section-image {
 		display: flex;

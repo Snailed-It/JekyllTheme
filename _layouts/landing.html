@@ -3,55 +3,54 @@ layout: default
 ---
 
 <article class="post">
-	<header class="post-header">
-		<h1 class="post-title">{{ page.title | escape }}</h1>
-	</header>
-
 	<div class="post-content">{{ content }}</div>
 
-	{% assign page_content = site.landing | where: "published", true | sort: "order" %}
-	{% for section in page_content %}
-		{% assign section_image = false %}
-		{% if section.image or section.carousel %}
-			{% assign section_image = true %}
-		{% endif %}
-		{% capture align_class %}
-			{% if section_image == true %}
-				{% cycle 'section-right', 'section-left' %}
-			{% else %}
+	{%- assign page_content = site.landing | where: "published", true | sort: "order" -%}
+	{%- for section in page_content -%}
+		{%- assign section_image = false -%}
+		{%- if section.image or section.carousel -%}
+			{%- assign section_image = true -%}
+		{%- endif -%}
+		{%- capture align_class -%}
+			{%- if section_image == true -%}
+				{%- cycle 'section-right', 'section-left' -%}
+			{%- else -%}
 				section-center
-			{% endif %}
-		{% endcapture %}
+			{%- endif -%}
+		{%- endcapture -%}
 		<div class="section {{ align_class }}">
-			{% if section_image == true %}
+			{%- if section_image == true -%}
 				<div class="section-image">
-					{% if section.image %}
-						{% if section.image.asset contains ".svg" %}
+					{%- if section.image -%}
+						{%- if section.image.asset contains ".svg" -%}
 							<object type="image/svg+xml" data="/assets/{{ section.image.asset }}"></object>
-						{% else %}
+						{%- else -%}
 							<img src="/assets/{{ section.image.asset }}" alt="{{ section.image.alt }}"/>
-						{% endif %}
-					{% elsif section.carousel %}
-						{% include carousel.html carousel=section.carousel %}
-					{% endif %}
+						{%- endif -%}
+					{%- elsif section.carousel -%}
+						{%- include carousel.html carousel=section.carousel -%}
+					{%- endif -%}
 				</div>
-			{% endif %}
-			<div class="section-text">{% include landing_section.html %}</div>
+			{%- endif -%}
+			<div class="section-text">{%- include landing_section.html -%}</div>
+			{%- if section.footnote -%}
+				<small>{{ section.footnote | markdownify }}</small>
+			{%- endif -%}
 		</div>
-	{% endfor %}
-	{% assign posts = site.posts %}
-	{% if posts.size > 0 %}
+	{%- endfor -%}
+	{%- assign posts = site.posts -%}
+	{%- if posts.size > 0 -%}
 		<h2 class="post-list-heading">Recent Updates</h2>
 		<ul class="post-list">
-			{% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
-			{% for post in posts %}
+			{%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+			{%- for post in posts -%}
 				<li>
 					<dt>
 						<a class="post-link" href="{{ post.url | relative_url }}"> {{ post.title | escape }} </a>
 					</dt>
 					<dd class="post-meta">{{ post.date | date: date_format }}</dd>
 				</li>
-			{% endfor %}
+			{%- endfor -%}
 		</ul>
-	{% endif %}
+	{%- endif -%}
 </article>
