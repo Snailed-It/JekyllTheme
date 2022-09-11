@@ -87,13 +87,21 @@ html {
 
 		ul {
 			list-style: none;
+			@media (max-width: $on-palm) {
+				&::before {
+					content: "Table of Contents";
+					font-weight: bold;
+				}
+			}
 			@media (min-width: $on-palm) {
 				margin-left: 1em;
+				position: sticky;
+				top: calc($nav-bar-height + 10%)
 			}
-			@include media-query($on-palm) {
-				border: solid 1px $text-color;
+			@media (max-width: $on-palm) {
+				border-left: solid 1px $text-color;
 				margin-left: revert;
-				padding: 1em;
+				padding-left: 1em;
 			}
 
 			li:not(:last-of-type) {
