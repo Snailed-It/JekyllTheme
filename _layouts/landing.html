@@ -45,10 +45,12 @@ layout: default
 					</div>
 				{%- endif -%}
 				<div class="section-text">{%- include landing_section.html -%}</div>
-				{%- if section.footnote -%}
-					<small>{{- section.footnote | markdownify -}}</small>
-				{%- endif -%}
 			</div>
+			{%- if section.footnote -%}
+				<div class='section-footnote'>
+					<small>{{- section.footnote | markdownify -}}</small>
+				</div>
+			{%- endif -%}
 		{%- endfor -%}
 	{%- endif -%}
 	{%- assign posts = site.posts -%}
