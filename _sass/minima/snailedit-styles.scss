@@ -1,3 +1,14 @@
+html {
+	scroll-behavior: smooth;
+
+	a {
+		&[id] {
+			margin-top: -$nav-bar-height;
+			padding-top: $nav-bar-height;
+		}
+	}
+}
+
 .docs-page {
 	display: grid;
 	grid-template-areas:

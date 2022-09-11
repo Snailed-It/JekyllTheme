@@ -13,7 +13,8 @@ layout: default
 	{%- assign contents_list = "" | split: ',' -%}
 	{%- assign documentation = "" | split: ',' -%}
 	{%- assign collection = site.collections | where: "label", page.collection | first -%}
-	{%- assign sections = collection.docs | where: "published", true | sort: "title" -%}
+	{%- assign section_sort = page.sort | default: "title"  -%}
+	{%- assign sections = collection.docs | where: "published", true | sort: section_sort -%}
 	{%- if sections.size > 0 -%}
 		{%- for doc in sections -%}
 			{%- assign anchor_link = doc.title | slugify -%}

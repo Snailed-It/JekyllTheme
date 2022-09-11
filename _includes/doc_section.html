@@ -1,8 +1,11 @@
 <h2><a id="{{- anchor_link -}}" href="#{{- anchor_link -}}">{{- anchor -}}</a>&nbsp;{{- doc.title -}}</h2>
+{%- if doc.subtitle -%}
+	<h5><em>{{ doc.subtitle }}</em></h5>
+{%- endif -%}
 {{- doc.content | markdownify -}}
 {%- if doc.tip -%}
 	<div class="docs-tip">
-		<span class="tip-title"><strong>Tip:</strong></span>
+		<span class="tip-title"><strong>Tip:</strong></span>&nbsp;
 		<span class="tip-content">{{- doc.tip | markdownify -}}</span>
 	</div>
 {%- endif -%}
