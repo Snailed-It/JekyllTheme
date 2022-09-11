@@ -1,40 +1,49 @@
 ---
 layout: default
 ---
-
-<article class="docs-page">
-	<header class="post-header">
-		<h1 class="post-title">{{ page.title | escape }}</h1>
+<article class='docs-page'>
+	<header class='post-header'>
+		<h1 class='post-title'>{{- page.title | escape -}}</h1>
 	</header>
-	{%- assign content = content | trim -%} {%- assign content_length = content | number_of_words -%} {%- if
-	content_length > 0 -%}
-	<div class="page-content">{{ content }}</div>
-	{%- endif -%} {%- assign contents_list = "" | split: ',' -%} {%- assign documentation = "" | split: ',' -%} {%-
-	assign collection = site.collections | where: "label",page.collection | first -%} {%- assign sections =
-	collection.docs | where: "published", true | sort: "title" -%} {%- for doc in sections -%} {%- assign anchor_link =
-	doc.title | slugify %} {% capture anchor -%} {%- if page.anchor_text -%} {{ page.anchor_text }} {%- else if
-	page.anchor_img -%}
-	<img
-		src="{{ page.anchor_img.src }}"
-		alt="{{ page.anchor_img.alt }}"
-		{%
-		if
-		page.anchor_img.class
-		%}
-		class="{{ page.anchor_img.class }}"
-		{%
-		endif
-		-%} />
-	{%- else -%} § {%- endif %} {%- endcapture -%} {%- capture toc_link %}
-	<li><a href="#{{ anchor_link }}">{{ doc.title }}</a></li>
-	{% endcapture -%} {%- assign contents_list = contents_list | push: toc_link -%} {%- capture doc_section -%} {%-
-	include doc_section.html -%} {%- endcapture -%} {% assign documentation = documentation | push: doc_section -%} {%-
-	endfor -%}
-	<div class="sidenav">
+	{%- assign content = content | trim -%}
+	{%- assign content_length = content | number_of_words -%}
+	{%- if content_length > 0 -%}
+		<div class='page-content'>{{- content -}}</div>
+	{%- endif -%}
+	{%- assign contents_list = "" | split: ',' -%}
+	{%- assign documentation = "" | split: ',' -%}
+	{%- assign collection = site.collections | where: "label", page.collection | first -%}
+	{%- assign sections = collection.docs | where: "published", true | sort: "title" -%}
+	{%- if sections.size > 0 -%}
+		{%- for doc in sections -%}
+			{%- assign anchor_link = doc.title | slugify -%}
+			{%- capture anchor -%}
+				{%- if page.anchor_text -%}
+					{{- page.anchor_text -}}
+				{%- elsif page.anchor_img -%}
+					<img
+						alt='{{- page.anchor_img.alt -}}'
+						src='{{- page.anchor_img.src -}}'
+						{% if page.anchor_img.class -%}
+							class='{{- page.anchor_img.class -}}'
+						{%- endif %} />
+				{%- else -%}§&nbsp;{% endif -%}
+			{%- endcapture -%}
+			{%- capture toc_link -%}
+				<li><a href='#{{- anchor_link -}}'>{{- doc.title -}}</a></li>
+			{%- endcapture -%}
+			{%- assign contents_list = contents_list | push: toc_link -%}
+			{%- capture doc_section -%}
+				{%- include doc_section.html -%}
+			{%- endcapture -%}
+			{%- assign documentation = documentation | push: doc_section -%}
+		{%- endfor -%}
+	{%- endif -%}
+	<div class='sidenav'>
 		<ul>
-			{{ contents_list | join: "" }}
+			{{- contents_list | join: "" -}}
 		</ul>
 	</div>
 
-	<div class="documentation">{{ documentation | join: "" }}</div>
+	<div class='documentation'>{{- documentation | join: "" -}}</div>
 </article>

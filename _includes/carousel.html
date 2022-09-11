@@ -1,12 +1,24 @@
 <div class="carousel slide" data-bs-ride="carousel">
 	<div class="carousel-inner">
-		{% for item in include.carousel.items %}
-			<div class="carousel-item{% if forloop.first %} active{% endif %}">
-				<img src="{{ item.image }}" class="d-block" alt="{{ item.alt }}">
+		{%- for item in include.carousel.items -%}
+			<div class="carousel-item{%- if forloop.first -%} active{%- endif -%}">
+				{%- assign dark_image = dark_images | find_exp: "asset", "asset.name contains section.image.asset" -%}
+				<picture>
+					{%- if dark_image -%}
+						<source
+							media="(prefers-color-scheme: dark)"
+							srcset="/assets/dark/{{- section.image.asset -}}"
+						/>
+					{%- endif -%}
+					<img
+						alt="{{- section.image.alt -}}"
+						src="/assets/{{- section.image.asset -}}"
+					/>
+				</picture>
 			</div>
-		{% endfor %}
+		{%- endfor -%}
 	</div>
-	{% if carousel.display_controls %}
+	{%- if carousel.display_controls -%}
 		<button class="carousel-control-prev" type="button" data-bs-target="#carouselControls" data-bs-slide="prev">
 			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 			<span class="visually-hidden">Previous</span>
@@ -15,5 +27,5 @@
 			<span class="carousel-control-next-icon" aria-hidden="true"></span>
 			<span class="visually-hidden">Next</span>
 		</button>
-	{% endif %}
+	{%- endif -%}
 </div>

@@ -1,4 +1,4 @@
-{% if section.title %}
-<h2>{{ section.title }}</h2>
-{% endif %}
-<p>{{ section.content | markdownify }}</p>
+{%- if section.title -%}
+	<h2>{{- section.title -}}</h2>
+{%- endif -%}
+{{- section.content | markdownify -}}

@@ -2,53 +2,55 @@
 layout: default
 ---
 <article class="post">
-	<div class="post-content">{{ content }}</div>
+	<div class="post-content">{{- content -}}</div>
 
 	{%- assign page_content = site.landing | where: "published", true | sort: "order" -%}
-	{%- for section in page_content -%}
-		{%- assign section_image = false -%}
-		{%- if section.image or section.carousel -%}
-			{%- assign section_image = true -%}
-		{%- endif -%}
-		{%- capture align_class -%}
-			{%- if section_image == true -%}
-				{%- cycle 'section-right', 'section-left' -%}
-			{%- else -%}
-				section-center
+	{%- if page_content.size > 0 -%}
+		{%- for section in page_content -%}
+			{%- assign section_image = false -%}
+			{%- if section.image or section.carousel -%}
+				{%- assign section_image = true -%}
 			{%- endif -%}
-		{%- endcapture -%}
-		<div class="section {{ align_class }}">
-			{%- if section_image == true -%}
-				<div class="section-image">
-					{%- if section.image -%}
-						{%- if section.image.asset contains ".svg" -%}
-							<object type="image/svg+xml" data="/assets/{{ section.image.asset }}"></object>
-						{%- else -%}
-							{%- assign dark_image = dark_images | find_exp: "asset", "asset.name contains section.image.asset" -%}
-							<picture>
-								{%- if dark_image -%}
-								<source
-									media="(prefers-color-scheme: dark)"
-									srcset="/assets/dark/{{ section.image.asset }}"
-								/>
-								{%- endif -%}
-							   <img
-									alt="{{ section.image.alt }}"
-									src="/assets/{{ section.image.asset }}"
-								/>
-							</picture>
+			{%- capture align_class -%}
+				{%- if section_image == true -%}
+					{%- cycle 'section-right', 'section-left' -%}
+				{%- else -%}
+					section-center
+				{%- endif -%}
+			{%- endcapture -%}
+			<div class="section {{ align_class -}}">
+				{%- if section_image == true -%}
+					<div class="section-image">
+						{%- if section.image -%}
+							{%- if section.image.asset contains ".svg" -%}
+								<object type="image/svg+xml" data="/assets/{{- section.image.asset -}}"></object>
+							{%- else -%}
+								{%- assign dark_image = dark_images | find_exp: "asset", "asset.name contains section.image.asset" -%}
+								<picture>
+									{%- if dark_image -%}
+										<source
+											media="(prefers-color-scheme: dark)"
+											srcset="/assets/dark/{{- section.image.asset -}}"
+										/>
+									{%- endif -%}
+									<img
+										alt="{{- section.image.alt -}}"
+										src="/assets/{{- section.image.asset -}}"
+									/>
+								</picture>
+							{%- endif -%}
+						{%- elsif section.carousel -%}
+							{%- include carousel.html carousel=section.carousel -%}
 						{%- endif -%}
-					{%- elsif section.carousel -%}
-						{%- include carousel.html carousel=section.carousel -%}
-					{%- endif -%}
-				</div>
-			{%- endif -%}
-			<div class="section-text">{%- include landing_section.html -%}</div>
-			{%- if section.footnote -%}
-				<small>{{ section.footnote | markdownify }}</small>
-			{%- endif -%}
-		</div>
-	{%- endfor -%}
+					</div>
+				{%- endif -%}
+				<div class="section-text">{%- include landing_section.html -%}</div>
+				{%- if section.footnote -%}
+					<small>{{- section.footnote | markdownify -}}</small>
+				{%- endif -%}
+			</div>
+		{%- endfor -%}
+	{%- endif -%}
 	{%- assign posts = site.posts -%}
 	{%- if posts.size > 0 -%}
 		<h2 class="post-list-heading">Recent Updates</h2>
@@ -57,9 +59,9 @@ layout: default
 			{%- for post in posts -%}
 				<li>
 					<dt>
-						<a class="post-link" href="{{ post.url | relative_url }}"> {{ post.title | escape }} </a>
+						<a class="post-link" href="{{- post.url | relative_url -}}">{{- post.title | escape -}}</a>
 					</dt>
-					<dd class="post-meta">{{ post.date | date: date_format }}</dd>
+					<dd class="post-meta">{{- post.date | date: date_format -}}</dd>
 				</li>
 			{%- endfor -%}
 		</ul>

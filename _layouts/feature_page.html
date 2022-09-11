@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
-	{%- include head.html -%}
+<html lang="{{- page.lang | default: site.lang | default: 'en' -}}">
+{%- include head.html -%}
 
-	<body>
-		{%- include header.html -%}
+<body>
+{%- include header.html -%}
 
-		<main aria-label='Content' class='page-content feature-content'>
-			<div class='wrapper'>{{ content }}</div>
-		</main>
+<main aria-label='Content' class='page-content feature-content'>
+	<div class='wrapper'>{{- content -}}</div>
+</main>
 
-		{%- include footer.html -%}
-	</body>
+{%- include footer.html -%}
+</body>
 </html>
