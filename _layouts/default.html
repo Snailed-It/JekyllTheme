@@ -4,6 +4,7 @@
 
 	<body>
 		{%- include header.html -%}
+		{%- assign dark_images = site.static_files | where_exp: "asset", "asset.path contains '/assets/dark'" -%}
 
 		<main aria-label="Content" class="page-content">
 			<div class="wrapper">{{ content }}</div>
