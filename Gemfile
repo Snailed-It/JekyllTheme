@@ -8,6 +8,7 @@ group :jekyll_plugins do
   gem 'jekyll-email-protect'
   gem 'jekyll-seo-tag'
   gem 'jekyll-redirect-from'
+  gem 'jekyll-toc'
 end
 
 gem "webrick", "~> 1.7"
