@@ -6,11 +6,13 @@ $dm-brand-color: $snail-brand-color;
 $lm-brand-color: lighten($snail-brand-color, 40%);
 $nav-bar-height: $spacing-unit * 1.865;
 $secondary-color: rgba(84,182,212,.95);
+$site-header: $lm-brand-color;
 :root {
 	--secondary-color: #{$secondary-color};
 	--secondary-text-color: #{lighten($lm-text-color, 50%)};
 
 	@media (prefers-color-scheme: dark) {
+		$site-header: $dm-brand-color;
 		--secondary-color: #{darken($secondary-color, 25%)};
 		--secondary-text-color: #{darken($lm-text-color, 50%)};
 	}
