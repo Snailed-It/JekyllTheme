@@ -18,7 +18,8 @@ layout: default
 					section-center
 				{%- endif -%}
 			{%- endcapture -%}
-			<div class="section {{ align_class -}}" {%- if section.section_id %} id="{{ section.section_id }}"{% endif %}>
+			<div
+				class="section {{ align_class -}}" {%- if section.section_id %} id="{{ section.section_id }}"{% endif %}>
 				{%- if section_image == true -%}
 					<div class="section-image">
 						{%- if section.image -%}
@@ -26,6 +27,9 @@ layout: default
 								<object type="image/svg+xml" data="/assets/{{- section.image.asset -}}"></object>
 							{%- else -%}
 								{%- assign dark_image = dark_images | find_exp: "asset", "asset.name contains section.image.asset" -%}
+								{% if section.image.href -%}
+									<a href="{{ section.image.href }}">
+								{%- endif %}
 								<picture>
 									{%- if dark_image -%}
 										<source
@@ -38,6 +42,9 @@ layout: default
 										src="/assets/{{- section.image.asset -}}"
 									/>
 								</picture>
+								{% if section.image.href -%}
+									</a>
+								{%- endif %}
 							{%- endif -%}
 						{%- elsif section.carousel -%}
 							{%- include carousel.html carousel=section.carousel -%}
