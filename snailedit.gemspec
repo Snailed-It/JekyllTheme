@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "snailedit"
-  spec.version       = "0.1.16"
+  spec.version       = "0.1.17"
   spec.authors       = ["Rosemary Orchard"]
   spec.email         = ["16113535+RosemaryOrchard@users.noreply.github.com"]
 

@@ -18,7 +18,7 @@ layout: default
 					section-center
 				{%- endif -%}
 			{%- endcapture -%}
-			<div class="section {{ align_class -}}">
+			<div class="section {{ align_class -}}" {%- if section.section_id %} id="{{ section.section_id }}"{% endif %}>
 				{%- if section_image == true -%}
 					<div class="section-image">
 						{%- if section.image -%}

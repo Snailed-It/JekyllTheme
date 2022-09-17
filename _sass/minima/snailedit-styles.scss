@@ -26,7 +26,8 @@ html {
 	grid-template-areas:
 		'post-header post-header'
 		'page-content sidebar'
-		'documentation sidebar';
+		'documentation sidebar'
+		'end-content end-content';
 	@media (min-width: $on-palm) {
 		grid-template-columns: 3fr 1fr;
 	}
@@ -36,6 +37,10 @@ html {
 			'page-content'
 			'sidebar'
 			'documentation';
+	}
+
+	.end-content {
+		grid-area: end-content;
 	}
 
 	.post-header {
