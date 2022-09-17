@@ -4,8 +4,18 @@
 		{%- assign titles_size =
 			site_pages | map: 'title' | join: '' | size -%}
 		<a class='site-title' href="{{- '/' | relative_url -}}" rel='author'>
-			<object class='menubar-icon' data='{{- site.icon | default('/assets/snail.svg') -}}'
-					type='image/svg+xml'></object>
+			{% assign site_icon = site.icon | default: site.logo | default: site.favicon | default: nil %}
+			{% if site_icon %}
+				{% if site_icon contains ".svg" %}
+					<object class='menubar-icon' data='{{ site_icon }}'
+							type='image/svg+xml'></object>
+				{% else %}
+					<img class='menubar-icon' src='{{ site_icon }}' alt='{{ site.title }}'>
+				{% endif %}
+			{% else %}
+				<object class='menubar-icon' data='/assets/snail.svg'
+						type='image/svg+xml'></object>
+			{% endif %}
 			&nbsp{{- site.title | escape -}}
 		</a>
 
