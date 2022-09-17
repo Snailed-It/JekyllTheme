@@ -5,12 +5,15 @@ $content-width: 1000px;
 $dm-brand-color: $snail-brand-color;
 $lm-brand-color: lighten($snail-brand-color, 40%);
 $nav-bar-height: $spacing-unit * 1.865;
+$secondary-color: rgba(84,182,212,.95);
 :root {
+	--secondary-color: #{$secondary-color};
 	--secondary-text-color: #{lighten($lm-text-color, 50%)};
+
+	@media (prefers-color-scheme: dark) {
+		--secondary-color: #{darken($secondary-color, 25%)};
+		--secondary-text-color: #{darken($lm-text-color, 50%)};
+	}
 }
 
-@media (prefers-color-scheme: dark) {
-	--secondary-text-color: #{darken($lm-text-color, 50%)};
-}
-
-$secondary-color: var(--secondary-text-color);
+$secondary-color: var(--secondary-color);

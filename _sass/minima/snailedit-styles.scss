@@ -50,6 +50,9 @@ html {
 	.documentation {
 		grid-area: documentation;
 		width: 100%;
+		@media (min-width: $on-palm) {
+			max-width: 660px;
+		}
 
 		object.inline {
 			height: 1em;
@@ -99,6 +102,9 @@ html {
 
 		ul {
 			list-style: none;
+		}
+
+		> ul {
 			@media (max-width: $on-palm) {
 				&::before {
 					content: "Table of Contents";
