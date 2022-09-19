@@ -1,4 +1,4 @@
-{%- assign social = site.minima.social_links -%}
+{%- assign social = site.minima.social_links | default: site.social_links -%}
 
 <ul class="social-media-list">
 	{%- for glb in social.gitlab -%}{%- if glb.username and glb.instance -%}

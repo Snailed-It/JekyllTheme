@@ -1,18 +1,19 @@
 <div class="carousel slide" data-bs-ride="carousel">
 	<div class="carousel-inner">
 		{%- for item in include.carousel.items -%}
-			<div class="carousel-item{%- if forloop.first -%} active{%- endif -%}">
-				{%- assign dark_image = dark_images | find_exp: "asset", "asset.name contains section.image.asset" -%}
+			<div class="carousel-item{%- if forloop.first %} active{%- endif -%}">
+				{% assign find_item = "asset.name contains " | append: item.path %}
+				{%- assign dark_image = dark_images | find_exp: "asset", find_item -%}
 				<picture>
 					{%- if dark_image -%}
 						<source
 							media="(prefers-color-scheme: dark)"
-							srcset="/assets/dark/{{- section.image.asset -}}"
+							srcset="/assets/dark/{{- item.path -}}"
 						/>
 					{%- endif -%}
 					<img
-						alt="{{- section.image.alt -}}"
-						src="/assets/{{- section.image.asset -}}"
+						alt="{{- item.alt -}}"
+						src="/assets/{{- item.path -}}"
 					/>
 				</picture>
 			</div>

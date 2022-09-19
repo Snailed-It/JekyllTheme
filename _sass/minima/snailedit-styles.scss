@@ -49,7 +49,7 @@ html {
 	.documentation {
 		grid-area: documentation;
 		width: 100%;
-		@include media-query($on-palm) {
+		@media (min-width: $on-palm) {
 			max-width: 660px;
 		}
 
@@ -94,7 +94,7 @@ html {
 
 	.sidenav {
 		grid-area: sidebar;
-		@include media-query($on-palm) {
+		@media (min-width: $on-palm) {
 			border-left: solid 1px $text-color;
 			margin-left: 1em;
 		}
@@ -104,21 +104,19 @@ html {
 		}
 
 		> ul {
-			@media (max-width: $on-palm) {
+			@include media-query($on-palm) {
+				border-left: solid 1px $text-color;
+				margin-left: revert;
+				padding-left: 1em;
 				&::before {
 					content: "Table of Contents";
 					font-weight: bold;
 				}
 			}
-			@include media-query($on-palm) {
+			@media (min-width: $on-palm) {
 				margin-left: 1em;
 				position: sticky;
 				top: calc($nav-bar-height + 10%)
-			}
-			@media (max-width: $on-palm) {
-				border-left: solid 1px $text-color;
-				margin-left: revert;
-				padding-left: 1em;
 			}
 
 			li:not(:last-of-type) {
@@ -140,10 +138,10 @@ html {
 		color: $text-color;
 		max-width: 100%;
 		padding: 0.5em;
-		@include media-query($on-palm) {
+		@media (min-width: $on-palm) {
 			width: 50%;
 		}
-		@media (max-width: $on-palm) {
+		@include media-query($on-palm) {
 			width: inherit;
 			&:not(:last-of-type) {
 				margin-bottom: 0.75em;
@@ -152,17 +150,17 @@ html {
 	}
 
 	input[type='submit'] {
-		@include media-query($on-palm) {
+		@media (min-width: $on-palm) {
 			max-width: 20%;
 			width: auto;
 		}
 	}
 
 	form {
-		@media (max-width: $on-palm) {
+		@include media-query($on-palm) {
 			display: grid;
 		}
-		@include media-query($on-palm) {
+		@media (min-width: $on-palm) {
 			display: flex;
 
 			.field {
@@ -259,35 +257,35 @@ html {
 
 .section {
 	padding-bottom: 2em;
-	@media (max-width: $on-palm) {
-		display: block;
-	}
-	@include media-query($on-palm) {
+	@media (min-width: $on-palm) {
 		display: grid;
 		gap: 1em;
 		grid-auto-flow: column;
 	}
+	@include media-query($on-palm) {
+		display: block;
+	}
 
 	.section-image {
-		display: flex;
 		align-items: center;
+		display: flex;
 
-		@include media-query($on-palm) {
+		@media (min-width: $on-palm) {
 			width: 300px;
 		}
-		@media (max-width: $on-palm) {
+		@include media-query($on-palm) {
 			max-width: 100%;
 			width: 100%;
 		}
 
 		img,
 		object {
-			@include media-query($on-palm) {
+			@media (min-width: $on-palm) {
 				max-width: 300px;
 			}
-			@media (max-width: $on-palm) {
-				max-width: 80%;
+			@include media-query($on-palm) {
 				margin: auto;
+				max-width: 80%;
 				padding-bottom: 1em;
 				padding-top: 1em;
 			}
@@ -295,7 +293,7 @@ html {
 	}
 
 	.section-text {
-		@media (max-width: $on-palm) {
+		@include media-query($on-palm) {
 			width: 100%;
 		}
 
@@ -333,10 +331,11 @@ html {
 			grid-column: 2;
 		}
 	}
+
 	&-center {
 		.section-text {
-			grid-column-start: 1;
 			grid-column-end: 2;
+			grid-column-start: 1;
 			text-align: center;
 		}
 	}
@@ -402,4 +401,18 @@ figcaption {
 
 section:not(:last-of-type) {
 	margin-bottom: 30px;
+}
+
+a.svg {
+	display: inline-block;
+	position: relative;
+
+	&:after {
+		bottom: 0;
+		content: "";
+		left: 0;
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
 }
