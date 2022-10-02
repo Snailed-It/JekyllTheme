@@ -7,6 +7,9 @@
 {%- assign dark_images = site.static_files | where_exp: "asset", "asset.path contains '/assets/dark'" -%}
 
 <main aria-label="Content" class="page-content">
+	{% assign content = content | strip %}
+	{% assign show_content = content | number_of_words %}
+	{% assign show_content = show_content  > 0 %}
 	<div class="wrapper">{{- content -}}</div>
 </main>
 

@@ -15,12 +15,6 @@ html {
 	}
 }
 
-.page-content {
-	.wrapper {
-		padding-top: 1em;
-	}
-}
-
 .docs-page {
 	@media (min-width: $on-palm) {
 		align-items: start;
@@ -230,6 +224,11 @@ html {
 
 .page-content {
 	padding-top: $nav-bar-height * 1.1;
+	.wrapper {
+		@media (min-width: $on-palm) {
+			padding-top: 1em;
+		}
+	}
 }
 
 .post-content {
