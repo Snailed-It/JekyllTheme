@@ -23,6 +23,7 @@ html {
 
 .docs-page {
 	@media (min-width: $on-palm) {
+		align-items: start;
 		display: grid;
 		grid-template-areas:
 		'post-header post-header'
@@ -114,6 +115,7 @@ html {
 				}
 			}
 			@media (min-width: $on-palm) {
+				margin-bottom: 0;
 				margin-left: 1em;
 				position: sticky;
 				top: calc($nav-bar-height + 10%)
@@ -243,7 +245,8 @@ html {
 	}
 
 	img,
-	object {
+	object,
+	picture {
 		align-items: center;
 		display: flex;
 		justify-content: center;
@@ -286,10 +289,12 @@ html {
 				max-width: 300px;
 			}
 			@include media-query($on-palm) {
+				align-items: center;
+				display: flex;
+				justify-content: center;
 				margin: auto;
 				max-width: 80%;
 				padding-bottom: 1em;
-				padding-top: 1em;
 			}
 		}
 	}

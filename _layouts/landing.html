@@ -2,7 +2,9 @@
 layout: default
 ---
 <article class="post">
+	{% if content %}
     <div class="post-content">{{- content -}}</div>
+	{% endif %}
 
     {%- assign page_content = site.landing | where: "published", true | sort: "order" -%}
     {%- if page_content.size > 0 -%}
