@@ -8,8 +8,12 @@
 
 <main aria-label="Content" class="page-content">
 	{% assign content = content | strip %}
-	{% assign show_content = content | number_of_words %}
-	{% assign show_content = show_content  > 0 %}
+	{% assign content_word_length = content | number_of_words %}
+	{% if content_word_length > 0 %}
+		{% assign show_content = true %}
+	{% else %}
+		{% assign show_content = false %}
+	{% endif %}
 	<div class="wrapper">{{- content -}}</div>
 </main>
 

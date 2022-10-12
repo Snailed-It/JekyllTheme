@@ -239,7 +239,9 @@ html {
 
 	img,
 	object,
-	picture {
+	picture,
+	p > img,
+	p > object {
 		align-items: center;
 		display: flex;
 		justify-content: center;
