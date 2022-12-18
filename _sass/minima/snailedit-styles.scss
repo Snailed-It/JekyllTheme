@@ -237,7 +237,8 @@ html {
 		margin-top: 1em;
 	}
 
-	img,
+	p > img,
+	& > img,
 	object,
 	picture,
 	p > img,
