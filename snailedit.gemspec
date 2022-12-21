@@ -2,9 +2,9 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "snailedit"
-  spec.version       = "0.1.26"
-  spec.authors       = ["Rosemary Orchard"]
-  spec.email         = ["16113535+RosemaryOrchard@users.noreply.github.com"]
+  spec.version       = "0.1.27"
+  spec.authors       = ["Rosemary Orchard", "Snailed It"]
+  spec.email         = ["hello@snailedit.dev"]
 
   spec.summary       = "Snailed It's Jekyll Theme."
   spec.homepage      = "https://snailedit.dev"

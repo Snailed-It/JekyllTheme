@@ -15,7 +15,7 @@ layout: default
 	{%- assign sections = collection.docs | where: "published", true | sort: section_sort -%}
 	{%- if sections.size > 0 -%}
 		{%- for doc in sections -%}
-			{%- assign anchor_link = doc.slug | default: doc.title | slugify -%}
+			{%- assign anchor_link = doc.slug -%}
 			{%- capture anchor -%}
 				{%- if page.anchor_text -%}
 					{{- page.anchor_text -}}
