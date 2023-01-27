@@ -8,6 +8,7 @@ $nav-bar-height: $spacing-unit * 1.865;
 $secondary-color: rgba(84,182,212,.95);
 $site-header: $lm-brand-color;
 :root {
+	--primary-color: #{$snail-brand-color};
 	--secondary-color: #{$secondary-color};
 	--secondary-text-color: #{lighten($lm-text-color, 50%)};
 
