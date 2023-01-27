@@ -418,3 +418,13 @@ a.svg {
 		top: 0;
 	}
 }
+
+hr {
+	margin-top: revert;
+	margin-bottom: revert;
+	
+	@media (min-width: $on-palm) {
+		margin-top: $spacing-unit;
+		margin-bottom: $spacing-unit;
+	}
+}
