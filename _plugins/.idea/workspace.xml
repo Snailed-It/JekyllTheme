@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d0927a5-2a3c-4e4e-9bb7-72a74c5cb865" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../_config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/../Gemfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../_includes/multipage-pagebreak.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../_includes/multipage-paging.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/multipage-generator.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../snailedit.gemspec" beforeDir="false" afterPath="$PROJECT_DIR$/../snailedit.gemspec" afterDir="false" />
-    </list>
+    <list default="true" id="2d0927a5-2a3c-4e4e-9bb7-72a74c5cb865" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,7 +32,8 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "ruby.rails.projectView.checked": "true"
+    "ruby.rails.projectView.checked": "true",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -52,6 +45,7 @@
       <option name="presentableId" value="Default" />
       <updated>1663356814800</updated>
       <workItem from="1663356816409" duration="858000" />
+      <workItem from="1676947621032" duration="2000" />
     </task>
     <servers />
   </component>
