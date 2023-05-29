@@ -63,10 +63,11 @@ layout: default
     {%- endif -%}
     {%- assign posts = site.posts -%}
     {%- if posts.size > 0 -%}
-        <h2 class="post-list-heading">Recent Updates</h2>
+    <div>
+        <h2 class="post-list-heading"><a href="{% link blog.md %}">Recent Updates</h2>
         <ul class="post-list">
             {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-            {%- for post in posts -%}
+            {%- for post in posts limit:5 -%}
                 <li>
                     <dt>
                         <a class="post-link" href="{{- post.url | relative_url -}}">{{- post.title | escape -}}</a>
@@ -75,5 +76,6 @@ layout: default
                 </li>
             {%- endfor -%}
         </ul>
+    </div>
     {%- endif -%}
 </article>
