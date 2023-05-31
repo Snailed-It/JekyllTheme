@@ -1,12 +1,7 @@
 html {
+	scroll-padding-top: $nav-bar-height * 1.1;
 	scroll-behavior: smooth;
-
-	* {
-		&[id] {
-			margin-top: -$nav-bar-height;
-			padding-top: $nav-bar-height;
-		}
-	}
+	overflow: scroll;
 }
 
 .docs-page {
@@ -215,15 +210,6 @@ html {
 	line-height: 0;
 }
 
-.page-content {
-	padding-top: $nav-bar-height * 1.1;
-	.wrapper {
-		@media (min-width: $on-palm) {
-			padding-top: 1em;
-		}
-	}
-}
-
 .post-content {
 	margin-bottom: $spacing-unit;
 
@@ -422,7 +408,7 @@ a.svg {
 hr {
 	margin-top: revert;
 	margin-bottom: revert;
-	
+
 	@media (min-width: $on-palm) {
 		margin-top: $spacing-unit;
 		margin-bottom: $spacing-unit;
