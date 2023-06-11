@@ -2,6 +2,10 @@ html {
 	scroll-padding-top: $nav-bar-height * 1.1;
 	scroll-behavior: smooth;
 	overflow: scroll;
+
+	main {
+		margin-top: $nav-bar-height;
+	}
 }
 
 .docs-page {
