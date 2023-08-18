@@ -1,12 +1,32 @@
 <footer class="site-footer h-card">
 	<div class="wrapper">
 		<div class="site-footer-inner">
-			<object
-				data="{{- '/assets/snail.svg' | relative_url -}}"
-				style="width: 50px; height: 20px"
-				type="image/svg+xml"></object>
-			Snailed It Development Ltd (Company No. 13620216) is registered in England and Wales at 7 Bell Yard, London,
-			WC2A 2JR.
+			<a href="https://snailedit.dev">
+				<img
+					src="{{- '/assets/snail.svg' | relative_url -}}"
+					style="width: 31.55px; height: 20px"
+					type="image/svg+xml"
+					aria-hidden="true"
+					alt="Snailed It Snail Logo"
+				>
+				Snailed It Development Ltd (Company No. 13620216) is registered in England and Wales at 7 Bell Yard,
+				London,
+				WC2A 2JR.
+			</a>
 		</div>
+		{% assign footer_links = site.pages | where_exp:"item", "item.published != false" | where: "footer", true -%}
+		{% assign all_links = menu_links | concat: footer_links %}
+		{% if all_links %}
+		<div class="site-footer-inner">
+			<ul class="nav footer-nav justify-content-center">
+				{% for link in all_links %}
+				<li class="nav-item">
+					<a class="nav-link active" aria-current="page"
+					   href="{{ link.url }}">{{ link.menu_title | default: link.title }}</a>
+				</li>
+				{% endfor %}
+			</ul>
+		</div>
+		{% endif %}
 	</div>
 </footer>
