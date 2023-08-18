@@ -485,10 +485,6 @@ html {
 		text-decoration: none;
 	}
 
-	@media (prefers-color-scheme: dark) {
-		background-color: $site-header !important;
-	}
-
 	.site-title,
 	.page-link,
 	a {
@@ -496,10 +492,6 @@ html {
 
 		&:hover {
 			text-decoration: none;
-		}
-
-		@media (prefers-color-scheme: dark) {
-			color: $site-header-text;
 		}
 	}
 }
