@@ -18,6 +18,24 @@ html {
 	margin-bottom: 2em;
 }
 
+.app_landing {
+	text-align: center;
+
+	.app_icon {
+		clear: both;
+
+		img {
+			max-width: 350px;
+		}
+	}
+
+	.app_store {
+		clear: both;
+		padding-bottom: 1em;
+	}
+}
+
+
 .docs-page {
 	@media (min-width: $on-palm) {
 		align-items: start;
