@@ -8,6 +8,8 @@ $nav-bar-height: $spacing-unit * 1.865;
 $secondary-color: rgba(84,182,212,.95);
 $site-header: $lm-brand-color;
 :root {
+	--announcement-background-color: #eeeeee;
+	--announcement-text-color: #444444;
 	--primary-color: #{$snail-brand-color};
 	--secondary-color: #{$secondary-color};
 	--secondary-text-color: #{lighten($lm-text-color, 50%)};
@@ -17,6 +19,8 @@ $site-header: $lm-brand-color;
 	--site-header-text: black;
 
 	@media (prefers-color-scheme: dark) {
+		--announcement-background-color: #444444;
+		--announcement-text-color: #eeeeee;
 		--secondary-color: #{darken($secondary-color, 25%)};
 		--secondary-text-color: #{darken($lm-text-color, 50%)};
 		--shortcuts-blue: #3B82F8;

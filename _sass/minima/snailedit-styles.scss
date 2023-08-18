@@ -8,6 +8,16 @@ html {
 	}
 }
 
+.announcement {
+	background-color: var(--announcement-background-color);
+	color: var(--announcement-text-color);
+	border-radius: 2em;
+	border-color: var(--announcement-background-color);
+	margin: 1em;
+	margin-top: 2em;
+	margin-bottom: 2em;
+}
+
 .docs-page {
 	@media (min-width: $on-palm) {
 		align-items: start;

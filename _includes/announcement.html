@@ -1,0 +1,11 @@
+<div class="card announcement">
+    <div class="card-body">
+        {% if include.announcement.title %}
+            <h5 class="card-title">{{ include.announcement.title | markdown_no_paragraphs }}</h5>
+        {% endif %}
+        {% if include.announcement.subtitle %}
+            <h6 class="card-subtitle">{{ include.announcement.subtitle | markdown_no_paragraphs }}</h6>
+        {% endif %}
+        {{ include.announcement.body | markdownify }}
+    </div>
+</div>

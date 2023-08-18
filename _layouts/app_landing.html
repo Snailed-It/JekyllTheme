@@ -1,0 +1,22 @@
+---
+layout: default
+---
+<div class="app_landing">
+    <div class="app_title">
+        <h1>{{site.title}}</h1>
+        <h4><em>{{ site.tagline }}</em></h4>
+        <h5>{{ site.description }}</h5>
+    </div>
+    {% if page.announcement %}
+        {% include announcement.html announcement=page.announcement %}
+    {% endif %}
+    <div class="app_icon">
+        <img src="{{ site.logo }}" alt="{{site.title}} App Icon"/>
+    </div>
+    <div class="app_store">
+        <a href="{% link appstore.md %}"><img class="app_store" alt="App Store" src="/assets/app-store-badge.png"/></a>
+    </div>
+    <div class="app_description">
+{{ content }}
+    </div>
+</div>
