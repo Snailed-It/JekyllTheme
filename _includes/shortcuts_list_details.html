@@ -1,0 +1,19 @@
+<div class="card-columns">
+	{%- for action_page in include.action_pages -%}
+	{% assign shortcuts_action = action_page.shortcuts_action %}
+	<div class="col">
+		<div class="shortcuts-action-icon">
+			<a href="{{ action_page.url }}">
+				{% include shortcuts_action_group_icon.html group=group %}
+				<i class="{{ action_page.icon }}"></i>
+			</a>
+		</div>
+		<h4 id="{{ action_page.slug }}">
+			<a href="{{ action_page.url }}">
+				{{- action_page.title -}}
+			</a>
+		</h4>
+		<p>{{ shortcuts_action.description }}</p>
+	</div>
+	{% endfor %}
+</div>

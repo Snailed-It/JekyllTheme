@@ -1,0 +1,52 @@
+---
+layout: default
+---
+{% if page.title %}
+    <h1>{{ page.title }}</h1>
+{% endif %}
+<article>
+    {%- assign content = content | trim -%}
+    {%- assign content_length = content | number_of_words -%}
+    {%- if content_length > 0 -%}
+        <div class='content'>{{- content -}}</div>
+    {%- endif -%}
+    {%- assign collection = site.collections | where: "label", page.collection | first -%}
+    {%- assign section_sort = page.sort | default: "title" -%}
+    {%- assign sections = collection.docs | where: "published", true | sort: section_sort -%}
+    <div class='card-columns'>
+        {%- if sections.size > 0 -%}
+            {%- for doc in sections -%}
+                {% assign doc_url = doc.url | relative_url %}
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h3>
+                        {% assign doc_title = doc.title %}
+                        {% if page.title_remove %}
+                          {% for word in page.title_remove %}
+                            {% assign doc_title = doc_title | remove: word | strip %}
+                          {% endfor %}
+                        {% endif %}
+                            <a class="card-title" href="{{ doc_url }}">{{ doc_title }}</a>
+                        </h3>
+                        <p class="card-text">{{ doc.subtitle }}</p>
+                        <p class="card-text">
+                            <a class="card-link" href="{{ doc_url }}"><i class="fa-solid fa-circle-info"></i> Show full
+                                guide</a>
+                        </p>
+                        {% if doc.widget_content %}
+                        <p class="card-text">
+                            <a class="card-link" href="{{ doc_url }}#widget_content"><i class="fa-solid fa-file-code"></i>
+                                View JSON</a>
+                        </p>
+                        {% endif %}
+                    </div>
+                    {% if doc.image %}
+                        <a href="{{ doc_url }}">
+                            <img src="/assets{{ doc.image.path }}" alt="{{ doc.main_image.alt }}" class="card-img-bottom px-3 pb-3">
+                        </a>
+                    {% endif %}
+                </div>
+            {%- endfor -%}
+        {%- endif -%}
+    </div>
+</article>

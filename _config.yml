@@ -1,7 +1,39 @@
 theme: snailedit
+timezone: Europe/London
 permalink: pretty
+
+kramdown:
+    smart_quotes: [ "apos", "apos", "quot", "quot" ]
+
+compress_html:
+    ignore:
+        envs: [ local ]
+
+exclude:
+    - .idea
+    - _plugins/.idea
+    - Gemfile
+    - Gemfile.lock
+    - vendor
+    - vendor/bin
+    - old_public
+    - internal_docs
+    - internal_scripts
+
 toc:
- min_level: 2
- max_level: 3
- list_class: toc_list
- sublist_class: toc_sublist
+    min_level: 2
+    max_level: 3
+    list_class: toc_list
+    sublist_class: toc_sublist
+
+
+shortcuts_group_icons:
+    server:
+        icon: "fa-solid fa-server"
+        name: "Automation Server"
+    notification:
+        icon: "fa-solid fa-message"
+        name: "Notifications"
+    device:
+        icon: "fa-solid fa-mobile-screen-button"
+        name: "Device"

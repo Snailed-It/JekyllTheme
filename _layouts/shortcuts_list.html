@@ -1,0 +1,36 @@
+---
+layout: default
+---
+{% if page.title %}
+	<h1>{{ page.title }}</h1>
+{% endif %}
+<article class="shortcuts-list">
+	{%- assign content = content | trim -%}
+	{%- assign content_length = content | number_of_words -%}
+	{%- if content_length > 0 -%}
+		<div class='content'>{{- content -}}</div>
+	{%- endif -%}
+	{% assign shortcuts_groups = site.shortcuts_actions | map: 'group' %}
+	{% assign shortcuts_groups = shortcuts_groups | uniq | compact %}
+	{% if shortcuts_groups %}
+		{%- for group in shortcuts_groups -%}
+			{% assign action_pages = site.shortcuts_actions | where: "group", group | where: "published", true | sort: 'title' %}
+			{% if action_pages.size > 0 %}
+				<h2>
+					{% case group %}
+						{% when "server" %}
+							Automation Server
+						{% when "notification" %}
+							Notifications
+						{% when "device" %}
+							Device
+					{% endcase %}
+				</h2>
+				{% include shortcuts_list.html action_pages=action_pages %}
+			{% endif %}
+		{% endfor %}
+	{% else %}
+		{% assign action_pages = site.shortcuts_actions | where: "published", true | sort: 'title' %}
+		{% include shortcuts_list.html action_pages=action_pages %}
+	{% endif %}
+</article>

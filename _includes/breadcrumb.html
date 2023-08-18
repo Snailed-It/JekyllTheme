@@ -1,0 +1,13 @@
+{%- unless breadcrumb_page -%}
+    {%- if include.page -%}
+        {%- assign breadcrumb_page = include.page -%}
+    {%- elsif include.page_search -%}
+        {%- assign page_search = "site_page.name == '" | append: include.page_search | append: "'" -%}
+        {%- assign breadcrumb_page = site.pages | find_exp: "site_page", page_search -%}
+    {%- endif -%}
+{%- endunless -%}
+{%- if breadcrumb_page -%}
+    <div class="breadcrumb">
+        <a href="{{ breadcrumb_page.url }}"><i class="fa-solid fa-angle-left"></i>&nbsp;{{ breadcrumb_page.title }}</a>
+    </div>
+{%- endif -%}

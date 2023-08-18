@@ -1,0 +1,4 @@
+{%- assign group_info = site.shortcuts_group_icons[include.group] | default: "" -%}
+{%- if group_info -%}
+	<i class="{{ group_info.icon }}"></i>
+{%- endif -%}

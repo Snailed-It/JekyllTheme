@@ -1,0 +1,65 @@
+---
+layout: default
+---
+<span class="shortcuts-action">
+{% include breadcrumb.html page_search="shortcuts_actions.md" %}
+<h2>
+    <span class="icon">
+    {% include shortcuts_action_group_icon.html group=page.group %}
+        {%- if page.icon -%}
+            <i class="{{ page.icon }}"></i>
+        {%- endif -%}
+    </span>
+    {{ page.title }}
+</h2>
+{{ content }}
+<br/>
+    {% if page.shortcuts_action.filters %}
+        <h3 id="filters"><i class="fa-solid fa-filter"></i>&nbsp;Filters</h3>
+        {% include shortcut-action-table.html options=page.shortcuts_action.filters %}
+    {% endif %}
+    {% if page.shortcuts_action.input %}
+        <h3 id="input"><i class="fa-solid fa-keyboard"></i>&nbsp;Input</h3>
+        {% include shortcut-action-table.html options=page.shortcuts_action.input %}
+    {% endif %}
+    {% if page.shortcuts_action.options %}
+        <h3 id="options"><i class="fa-solid fa-list-check"></i>&nbsp;Options</h3>
+        {% include shortcut-action-table.html options=page.shortcuts_action.options %}
+    {% endif %}
+    {% if page.shortcuts_action.output %}
+        {% assign output = site.data.shortcuts_models[page.shortcuts_action.output] %}
+        <h3 id="output"><i class="fa-solid fa-arrow-right-from-bracket"></i>&nbsp;Output{% if output.title %}: {{ output.title }}{% endif %}</h3>
+        {% capture description -%}
+        {% if output.description %}
+            {{ output.description | markdownify }}
+        {% endif %}
+    {%- endcapture %}
+    {% if output.outputListModel %}
+        {% assign output = site.data.shortcuts_models[output.outputListModel.lookup] %}
+        {% capture description -%}
+            {{ description }}
+            {% if output.title %}
+                <h4>{{ output.title }}</h4>
+            {% endif %}
+            {%- if output.description -%}
+                {{ output.description | markdownify }}
+            {%- endif -%}
+                Each <em>{{ output.title | default: "of these" }}</em> in the output list has the following properties:
+        {%- endcapture %}
+    {% endif %}
+    {{ description }}
+    {% if output.choices %}
+        {% include shortcut-action-table.html options=output.choices %}
+    {% endif %}
+    {% if output.options %}
+        <ul>
+            {% for option in output.options %}
+                <li>{{ option }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+        {% if output.model %}
+            {% include shortcut-action-table.html options=output.model %}
+        {% endif %}
+    {% endif %}
+</span>

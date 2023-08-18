@@ -1,0 +1,79 @@
+<table class="shortcuts-table">
+    <tbody>
+    {% for this_option in include.options %}
+        {% if this_option.lookup %}
+            {% assign option = site.data.shortcuts_models[this_option.lookup] %}
+        {% else %}
+            {% assign option = this_option %}
+        {% endif %}
+        <tr>
+            <td><strong>{{ option.title }}</strong></td>
+            <td>
+                <ul>
+                    {%- if option.description -%}
+                        {%- assign description = option.description -%}
+                        {%- if option.links -%}
+                        {%- for link in option.links -%}
+                        {%- capture replacement_link -%}
+                            {%- link {{ link }} -%}
+                        {%- endcapture -%}
+                        {%- assign description = description | replace: link, replacement_link -%}
+                        {%- endfor -%}
+                        {%- endif -%}
+                        <li style="list-style: none;">{{ description | markdown_no_paragraphs  }}</li>
+                    {%- endif -%}
+                    {%- if option.requirement -%}
+                        <li style="list-style: none; font-style: italic;"><small>Only available for <strong>{{ option.requirement | markdown_no_paragraphs  }}</strong></small></li>
+                    {% endif %}
+                    {%- if option.options -%}
+                        <ul>
+                            {%- for choice in option.options -%}
+                                <li>{{ choice | markdown_no_paragraphs }}</li>
+                            {%- endfor -%}
+                        </ul>
+                    {%- endif -%}
+                    {% if option.choices %}
+                        <ul>
+                            {% for this_choice in option.choices %}
+                                {% if this_choice.lookup %}
+                                    {% assign choice = site.data.shortcuts_models[this_choice.lookup] %}
+                                {% else %}
+                                    {% assign choice = this_choice %}
+                                {% endif %}
+                                <li>
+                                    <strong>{{ choice.title }}:</strong> {{ choice.description | markdown_no_paragraphs }}
+                                    {% if choice.options %}
+                                        <ul>
+                                            {%- for this_option in choice.options -%}
+                                                {% if this_option.lookup %}
+                                                    {% assign nested_option = site.data.shortcuts_models[this_option.lookup] %}
+                                                {% else %}
+                                                    {% assign nested_option = this_option %}
+                                                {% endif %}
+                                                <li>
+                                                    {% if nested_option.title %}
+                                                        <strong>{{ nested_option.title }}:</strong> {{ nested_option.description | markdown_no_paragraphs }}
+                                                    {% else %}
+                                                        {{ nested_option | markdown_no_paragraphs }}
+                                                    {% endif %}
+                                                    {% if nested_option.options %}
+                                                    <ul>
+                                                    {%- for sub_option in nested_option.options -%}
+                                                        <li>{{ sub_option }}</li>
+                                                    {%- endfor -%}
+                                                    </ul>
+                                                    {% endif %}
+                                                </li>
+                                            {%- endfor -%}
+                                        </ul>
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
