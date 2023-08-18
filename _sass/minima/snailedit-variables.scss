@@ -11,12 +11,19 @@ $site-header: $lm-brand-color;
 	--primary-color: #{$snail-brand-color};
 	--secondary-color: #{$secondary-color};
 	--secondary-text-color: #{lighten($lm-text-color, 50%)};
+	--shortcuts-blue: #3677F5;
+	--shortcuts-blue-background: #F1F5FE;
+	--site-header-text: black;
 
 	@media (prefers-color-scheme: dark) {
 		$site-header: $dm-brand-color;
 		--secondary-color: #{darken($secondary-color, 25%)};
 		--secondary-text-color: #{darken($lm-text-color, 50%)};
+		--shortcuts-blue: #3B82F8;
+		--shortcuts-blue-background: #1E222B;
+		--site-header-text: white;
 	}
 }
 
 $secondary-color: var(--secondary-color);
+$site-header-text: var(--site-header-text);
