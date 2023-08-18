@@ -11,5 +11,14 @@
 			crossorigin="anonymous"></script>
 	<link href="{{- '/assets/css/style.css' | relative_url -}}" rel='stylesheet' />
 	{%- feed_meta -%}
+	{% if site.app_id %}
+	<meta name="apple-itunes-app" content="app-id={{ site.app_id }}{% if page.app-argument %} app-argument={{ page.app-argument }}{% endif %}">
+	{% endif %}
+	{% if site.social_links.mastodon %}
+	<link rel="me" href="{{ site.social_links.mastodon }}">
+	{% endif %}
+	{% if page.no_bots %}
+	<meta name="robots" content="noindex" />
+	{% endif %}
 	{%- include custom-head.html -%}
 </head>
